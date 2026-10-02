@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ship Your MCP Server</title>
+<meta name="description" content="A tested MCP server kit: production starters for TypeScript and Python, both transports, packaging, deploy configs, the July 2026 spec-transition map, and the tool-design guide. Every example passes its tests.">
+<style>
+  :root {
+    --bg: #0b0e14;
+    --card: #11151d;
+    --line: #1f2630;
+    --text: #e6e8ea;
+    --muted: #9aa3ad;
+    --accent: #4ade80;
+    --accent-dark: #166534;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.9em; color: var(--accent); }
+
+  header { padding: 72px 0 40px; text-align: center; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .sub { color: var(--muted); max-width: 640px; margin: 18px auto 0; font-size: 18px; }
+
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+  .btn {
+    display: inline-block; padding: 14px 28px; border-radius: 10px;
+    font-weight: 700; text-decoration: none; font-size: 17px;
+  }
+  .btn-primary { background: var(--accent); color: #05130a; }
+  .btn-primary:hover { background: #6ee7a0; }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--muted); }
+  .fineprint { color: var(--muted); font-size: 14px; margin-top: 14px; }
+
+  section { padding: 44px 0; }
+  h2 { font-size: 26px; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .lede { color: var(--muted); margin-bottom: 28px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px;
+  }
+  .card h3 { font-size: 17px; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  .promise {
+    border: 1px solid var(--accent-dark); background: #0d1a12; border-radius: 12px;
+    padding: 24px; margin-top: 44px;
+  }
+  .promise strong { color: var(--accent); }
+
+  .service { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 32px; }
+  .service ul { list-style: none; margin: 18px 0; }
+  .service li { padding: 6px 0 6px 26px; position: relative; color: var(--muted); }
+  .service li::before { content: "→"; position: absolute; left: 4px; color: var(--accent); }
+  .price { font-size: 34px; font-weight: 800; }
+  .price small { color: var(--muted); font-size: 16px; font-weight: 400; }
+
+  details {
+    border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px;
+    margin-bottom: 10px; background: var(--card);
+  }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--muted); margin-top: 10px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 32px 0 48px; color: var(--muted); font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>Ship your MCP server <em>this weekend</em> — not next month.</h1>
+  <p class="sub">
+    MCP is how every major AI client — Claude, ChatGPT, Cursor, Copilot,
+    Gemini — reaches tools and data. This kit takes you from idea to a working,
+    installable, deployable MCP server: production-grade starters for
+    TypeScript and Python, both transport modes, packaging, deploy scripts, and
+    a tool-design guide that stops AI clients from misusing your tools.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" id="get-starter" href="https://github.com/WisetechySolutions/mcp-server-starter">Get the starter — free on GitHub</a>
+    <!-- TODO at launch: restore the $49-kit payment-link button here once Stripe links exist -->
+  </div>
+  <p class="fineprint">The full kit ($49 launch-week, then $99), design reviews ($149), and custom builds ($499) open at launch — payment links land this week. The free starter is live now.</p>
+</header>
+
+<section class="wrap">
+  <h2>What's inside</h2>
+  <p class="lede">Everything the SDK READMEs assume you already know, packaged as working code instead of a reading list.</p>
+  <div class="grid">
+    <div class="card"><h3>Production starter (TS + Python)</h3><p>stdio <em>and</em> Streamable HTTP from one codebase. Sessions handled, zod-validated inputs, real error handling — not a hello-world.</p></div>
+    <div class="card"><h3>Two worked patterns</h3><p>Wrap an external API (runs with zero API keys) and own state with CRUD tools. Most real servers are one of these two.</p></div>
+    <div class="card"><h3>Hermetic tests</h3><p>Client-level smoke tests over the real protocol — in-memory transport, no network. Run them in CI from day one.</p></div>
+    <div class="card"><h3>An MCP App example</h3><p>A tool result that renders an interactive dashboard inside the chat — host-themed, with text fallback for plain clients. The frontier piece no competitor ships.</p></div>
+    <div class="card"><h3>.mcpb packaging</h3><p>Ship an installable bundle your users can click, not a repo of hopes with a README asking them to install Node first.</p></div>
+    <div class="card"><h3>Deploy configs</h3><p>Dockerfile, systemd unit, and Procfile — run your remote server anywhere Node 20 runs. Remote mode is a deploy step, not a research project.</p></div>
+    <div class="card"><h3>The July 2026 spec map</h3><p>MCP went stateless on July 28, 2026. What breaks (nothing yet), what changes (a lot), and the two upgrades — SDK v2 and the new wire protocol — as separate decisions.</p></div>
+    <div class="card"><h3>The tool-design guide</h3><p>Naming, schemas, failure modes, and the classic mistakes that make LLMs call your tools wrong. The part nobody else sells.</p></div>
+  </div>
+
+  <div class="promise">
+    <h2>The promise nobody keeps</h2>
+    <p>
+      <strong>Every example in this kit passes its tests before it ships.</strong>
+      When the kit updates, the tests run again before you get the update.
+      If an example doesn't run on a clean Node 22 install, it doesn't ship.
+      No "coming soon", no aspirational code, no screenshots of things that don't work.
+    </p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="service">
+    <h2>Don't want to build it? I'll build yours.</h2>
+    <p class="lede">A production MCP server for your API or workflow, built to spec:</p>
+    <ul>
+      <li>You fill a one-page brief; you approve the tool spec within 48 hours</li>
+      <li>Up to 5 fully working, tested tools — built on the same tested patterns as this kit</li>
+      <li>.mcpb packaging + deploy walkthrough</li>
+      <li>Delivered in 5 business days, flat price, 14-day fix window</li>
+    </ul>
+    <p class="price">$499 <small>flat · 3 clients per month</small></p>
+    <p style="margin-top:16px"><a class="btn btn-primary" id="book-build" href="https://github.com/WisetechySolutions/mcp-server-starter/issues/new?title=Reserve%20a%20build%20slot">Reserve a build slot</a></p>
+    <p class="fineprint">Checkout activates at launch. Reserving via issue locks the $499 flat price and puts you in the queue (3/month).</p>
+
+    <hr style="border-color: var(--line); margin: 28px 0;">
+
+    <h3 style="margin-bottom:4px">Not ready for a build? Get the review.</h3>
+    <p class="lede">Send your existing MCP server repo. Within 48 hours: a written design review against the same guide this kit teaches — naming, schemas, error modes, test coverage — every finding ranked with its fix.</p>
+    <p class="price">$149 <small>flat · written report in 48 hours · credits toward a build</small></p>
+    <p style="margin-top:16px"><a class="btn btn-ghost" id="book-review" href="https://github.com/WisetechySolutions/mcp-server-starter/issues/new?title=Reserve%20a%20design%20review">Reserve a review</a></p>
+    <p class="fineprint">Same launch rule: reserving via issue locks the $149 price and your place in the queue.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Honest answers</h2>
+  <details><summary>Will this kit make me money?</summary><p>No promise here does, and anyone promising revenue from a developer kit is selling something else. What you get is a working weekend back and the patterns done right.</p></details>
+  <details><summary>Why pay when the SDK docs are free?</summary><p>Because they're scattered, and the five gotchas that cost you a weekend aren't in any one of them. The kit is the weekend.</p></details>
+  <details><summary>What if MCP changes?</summary><p>Kit updates are included in the price. The tests are what keep the examples honest when the SDK moves.</p></details>
+  <details><summary>Refunds?</summary><p>14 days, no questions, keep the files.</p></details>
+  <details><summary>How do I get it?</summary><p>The free starter is on GitHub right now. Kit checkout goes live at launch (instant download via Stripe). Reserving via a GitHub issue locks your launch price.</p></details>
+</section>
+
+<footer class="wrap">
+  <p>Questions? Open an issue on the <a href="https://github.com/WisetechySolutions/mcp-server-starter/issues" style="color: var(--accent);">GitHub repo</a> — every one gets a reply from the person who built this.</p>
+  <p style="margin-top:8px">Built by an operator, not a course-seller. No income promises, no fake testimonials, no countdown timers.</p>
+</footer>
+
+</body>
+</html>
